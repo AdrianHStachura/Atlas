@@ -1,8 +1,14 @@
-#include "server.cpp"
+#include "database.cpp"
+// #include "input.cpp"
 
 int main(void)
 {
     int TCP_PORT = 123;
-    run_server(TCP_PORT);
+
+    // create database
+
+    database myDatabase;
+    myDatabase.create_record("Adrian");    
+
     return 0;
 }
