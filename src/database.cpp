@@ -1,25 +1,40 @@
 #include "headers.h"
 
 
+
+
+/*
+TODO!
+
+Dont Allow for records have the same name
+
+Fields Needs More Data Types
+
+Functions needed
+
+Delete Record 
+Delete Field
+
+
+*/
+
+
+
+
 class record
 {
 private:
     // hash map of fields
                     // search by string not record       and variant so many data types in the data structure
-    std::unordered_map<std::string, std::variant<int,double,bool,std::string>> fields;
+    std::unordered_map<std::string,std::string> fields;
 public:
     // favorite guitar
     int add_field(std::string field_name,std::string data)
     {
         // only limited to strings right now 
         fields[field_name] = data;
-
         return 0;
     }
-    int delete_field(std::string field_name)
-    {
-        return 0;
-    }     
 };
 
 
@@ -34,22 +49,36 @@ public:
 
     int create_record(std::string recordName)
     {
+        // find if duplicate 
         // make a record
-        record newRecord;
+        record newRecord;   
 
         // record name is the KEY
         records[recordName] = newRecord;
 
-        // put it in database 
         return 0;
     }
-    // Todo create a function for main() to be able to access and edit the fields
-
-    // for a sunny day!
-    /**int delete_record(std::string recordName, std::string databaseName)
+    
+    int db_add_field(std::string field_name,std::string data, std::string recordName_s)
     {
+        // search hashmap of records for recordName
+        //recordName_s using find
+
+        
+        auto recordName_r = records.find(recordName_s);
+
+        // If its there then we somehow turn it into a record
+        if (recordName_r == records.end())
+        {
+            // key is not found
+            return 1;
+        }
+        // else it is found 
+
+        // I have no idea how this works i need to research first second etc LOL
+        recordName_r->second.add_field(field_name,data);
+    
         return 0;
-    }
-    **/     
+    } 
 };
 
